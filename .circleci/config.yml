@@ -1,0 +1,16 @@
+version: 2.1
+
+jobs:
+  arch_test:
+    docker:
+      - image: archlinux:latest
+    steps:
+      - run:
+          command: |
+            ls /var/lib/pacman/
+            pacman -Suy --noconfirm --debug
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - arch_test
